@@ -29,25 +29,60 @@ public class PetSurvey2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	//constructor
+	// constructor
 	public PetSurvey2() {
-		
-		//specifies layout
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 45, 43, 45, 65, 69, 53, 0 };
-		gridBagLayout.rowHeights = new int[] { 40, 23, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
-		setLayout(gridBagLayout);
 
-		// dog checkbox
-		JCheckBox chckbxDog = new JCheckBox("Dog");
-		chckbxDog.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				// if checked, set hasDog to true
-				hasDog = true;
+		// specifies layout
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] { 45, 0, 43, 45, 65, 69, 53, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 40, 23, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		getContentPane().setLayout(gridBagLayout);
+
+		// header label
+		JLabel lblCheckThePets = new JLabel("Check the pets you have.");
+		GridBagConstraints gbc_lblCheckThePets = new GridBagConstraints();
+		gbc_lblCheckThePets.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCheckThePets.gridx = 0;
+		gbc_lblCheckThePets.gridy = 0;
+		getContentPane().add(lblCheckThePets, gbc_lblCheckThePets);
+		
+				// dog checkbox
+				JCheckBox chckbxDog = new JCheckBox("Dog");
+				chckbxDog.addItemListener(new ItemListener() {
+					public void itemStateChanged(ItemEvent e) {
+						// if checked, set hasDog to true
+						hasDog = true;
+					}
+				});
+				
+						// layout positions checkboxes
+						GridBagConstraints gbc_chckbxDog = new GridBagConstraints();
+						gbc_chckbxDog.anchor = GridBagConstraints.WEST;
+						gbc_chckbxDog.insets = new Insets(0, 0, 5, 5);
+						gbc_chckbxDog.gridx = 1;
+						gbc_chckbxDog.gridy = 1;
+						getContentPane().add(chckbxDog, gbc_chckbxDog);
+
+		// results label
+		JLabel surveyResultsLabel = new JLabel("Survey results");
+		GridBagConstraints gbc_surveyResultsLabel = new GridBagConstraints();
+		gbc_surveyResultsLabel.gridwidth = 2;
+		gbc_surveyResultsLabel.anchor = GridBagConstraints.WEST;
+		gbc_surveyResultsLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_surveyResultsLabel.gridx = 1;
+		gbc_surveyResultsLabel.gridy = 2;
+		getContentPane().add(surveyResultsLabel, gbc_surveyResultsLabel);
+
+		// quit button
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.exit(0);
 			}
 		});
 
@@ -59,6 +94,12 @@ public class PetSurvey2 extends JFrame {
 				hasCat = true;
 			}
 		});
+		GridBagConstraints gbc_chckbxCat = new GridBagConstraints();
+		gbc_chckbxCat.anchor = GridBagConstraints.WEST;
+		gbc_chckbxCat.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxCat.gridx = 2;
+		gbc_chckbxCat.gridy = 1;
+		getContentPane().add(chckbxCat, gbc_chckbxCat);
 
 		// fish checkbox
 		JCheckBox chckbxFish = new JCheckBox("Fish");
@@ -69,25 +110,12 @@ public class PetSurvey2 extends JFrame {
 
 			}
 		});
-
-		// quit button
-		JButton btnQuit = new JButton("Quit");
-		btnQuit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.exit(0);
-			}
-		});
-
-		// results label
-		JLabel surveyResultsLabel = new JLabel("Survey results");
-		GridBagConstraints gbc_surveyResultsLabel = new GridBagConstraints();
-		gbc_surveyResultsLabel.gridwidth = 2;
-		gbc_surveyResultsLabel.anchor = GridBagConstraints.WEST;
-		gbc_surveyResultsLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_surveyResultsLabel.gridx = 2;
-		gbc_surveyResultsLabel.gridy = 1;
-		add(surveyResultsLabel, gbc_surveyResultsLabel);
+		GridBagConstraints gbc_chckbxFish = new GridBagConstraints();
+		gbc_chckbxFish.anchor = GridBagConstraints.WEST;
+		gbc_chckbxFish.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxFish.gridx = 3;
+		gbc_chckbxFish.gridy = 1;
+		getContentPane().add(chckbxFish, gbc_chckbxFish);
 
 		// submit button
 		JButton btnSubmit = new JButton("Submit");
@@ -103,39 +131,20 @@ public class PetSurvey2 extends JFrame {
 			}
 		});
 
-		// layout positions checkboxes
-		GridBagConstraints gbc_chckbxDog = new GridBagConstraints();
-		gbc_chckbxDog.anchor = GridBagConstraints.WEST;
-		gbc_chckbxDog.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxDog.gridx = 0;
-		gbc_chckbxDog.gridy = 0;
-		add(chckbxDog, gbc_chckbxDog);
-		GridBagConstraints gbc_chckbxCat = new GridBagConstraints();
-		gbc_chckbxCat.anchor = GridBagConstraints.WEST;
-		gbc_chckbxCat.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxCat.gridx = 1;
-		gbc_chckbxCat.gridy = 0;
-		add(chckbxCat, gbc_chckbxCat);
-		GridBagConstraints gbc_chckbxFish = new GridBagConstraints();
-		gbc_chckbxFish.anchor = GridBagConstraints.WEST;
-		gbc_chckbxFish.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxFish.gridx = 2;
-		gbc_chckbxFish.gridy = 0;
-		add(chckbxFish, gbc_chckbxFish);
-
 		// layout for submit and quit buttons
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
-		gbc_btnSubmit.anchor = GridBagConstraints.WEST;
 		gbc_btnSubmit.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSubmit.anchor = GridBagConstraints.WEST;
 		gbc_btnSubmit.gridx = 0;
-		gbc_btnSubmit.gridy = 1;
-		add(btnSubmit, gbc_btnSubmit);
+		gbc_btnSubmit.gridy = 2;
+		getContentPane().add(btnSubmit, gbc_btnSubmit);
+
 		GridBagConstraints gbc_btnQuit = new GridBagConstraints();
 		gbc_btnQuit.insets = new Insets(0, 0, 0, 5);
 		gbc_btnQuit.anchor = GridBagConstraints.WEST;
 		gbc_btnQuit.gridx = 0;
-		gbc_btnQuit.gridy = 2;
-		add(btnQuit, gbc_btnQuit);
+		gbc_btnQuit.gridy = 3;
+		getContentPane().add(btnQuit, gbc_btnQuit);
 
 		// sets window to size that fits buttons
 		pack();
